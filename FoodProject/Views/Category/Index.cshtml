@@ -1,0 +1,43 @@
+﻿
+@model List<FoodProject.Data.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CATEGORİ LİSTESİ</h2>
+<br />
+
+<!--ARAMA YERİ-->
+
+@using (Html.BeginForm())
+{
+<p>
+    <b>CATEGORY NAME = </b>
+    @Html.TextBox("p")
+    <input class="btn btn-primary" type="submit"  value="Find">
+</p>
+}
+
+<table class="table table-boardered">
+    <tr>
+        <th>ID</th>
+        <th>CATEGORY NAME</th>
+        <th>DELETE</th>
+        <th>UPDATE</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+            <tr>
+                <td>@x.CategoryId</td>
+                <td>@x.CategoryName</td>
+                <td><a href="/Category/CategoryDelete/@x.CategoryId" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/Category/CategoryGet/@x.CategoryId" class="btn btn-success">UPDATE</a></td>
+            </tr>
+        }
+
+</table>
+
+<a href="/Category/CategoryAdd" class="btn btn-primary">NEW CATEGORY</a>

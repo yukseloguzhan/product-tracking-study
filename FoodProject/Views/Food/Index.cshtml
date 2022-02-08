@@ -1,0 +1,47 @@
+﻿@using X.PagedList;  <!--sayfalama icin-->
+@using X.PagedList.Mvc.Core;   <!--sayfalama icin-->
+
+@model IPagedList<FoodProject.Data.Models.Food>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>FOOD LİST</h2>
+<br />
+
+<table class="table table-boardered">
+    <tr>
+        <th>ID</th>
+        <th>FOOD NAME</th>
+        <th>PRICE</th>
+        <th>STOCK</th>
+        <th>CATEGORY NAME</th>
+        <th>DELETE</th>
+        <th>UPDATE</th>
+        <th>DETAIL</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.FoodId</td>
+            <td>@x.FoodName</td>
+            <td>@x.FoodPrice</td>
+            <td>@x.FoodStock</td>
+            <td>@x.Category.CategoryName</td>
+            <td><a href="/Food/DeleteFood/@x.FoodId" class="btn btn-danger">DELETE</a></td>
+            <td><a href="/Food/FoodGet/@x.FoodId" class="btn btn-success">UPDATE</a></td>
+            <td><a href="#" class="btn btn-info">DETAIL</a></td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))  <!--sayfalama icin sayafalama butonu-->
+
+<a href="/Food/AddFood" class="btn btn-primary">NEW FOOD</a>

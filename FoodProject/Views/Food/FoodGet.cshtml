@@ -1,0 +1,39 @@
+﻿
+
+@model FoodProject.Data.Models.Food
+
+@{
+    ViewData["Title"] = "FoodGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Food Get</h2>
+
+
+@using (Html.BeginForm("FoodUpdate", "Food", FormMethod.Post)) //  // 1.parametre: hangi actionresult 2parametre: depart controllerı icinde
+{
+    <b>FOOD ID : </b>
+    @Html.TextBoxFor(x => x.FoodId, new { @class = "form-control" })
+    <br />
+    <b>FOOD NAME : </b>
+    @Html.TextBoxFor(x => x.FoodName, new { @class = "form-control" })
+    <br />
+    <b>FOOD STOK : </b>
+    @Html.TextBoxFor(x => x.FoodStock, new { @class = "form-control" })
+    <br />
+    <b>FOOD PRICE : </b>
+    @Html.TextBoxFor(x => x.FoodPrice, new { @class = "form-control" })
+    <br />
+    <b>FOOD IMAGE : </b>
+    @Html.TextBoxFor(x => x.ImageURL, new { @class = "form-control" })
+    <br />
+    <b>FOOD CATEGORY : </b>
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v2, new { @class = "form-control" })
+    <br />
+    <b>FOOD DESCRIPTION : </b>
+    @Html.TextAreaFor(x => x.FoodDescription, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" style="background-color:blueviolet">FOOD SAVE</button>
+}
+
+
